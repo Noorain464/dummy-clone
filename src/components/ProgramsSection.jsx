@@ -1,32 +1,42 @@
-import { Code2, Database, ArrowRight } from 'lucide-react';
+import { Code2, Briefcase, Brain, ArrowRight } from 'lucide-react';
 import './ProgramsSection.css';
 
 const programs = [
   {
-    id: 'academy',
-    title: 'Scaler Academy',
-    tags: ['Software Engineering', 'System Design'],
+    id: 'tech',
+    title: 'Scaler School of Technology',
+    tags: ['UG Program', 'Computer Science'],
     icon: <Code2 size={40} color="#f9322c" />,
-    description: 'Master Computer Science fundamentals, System Design, and Full Stack Development. Ideal for software engineers looking to level up.',
-    duration: '9-11 Months',
-    audience: 'For working professionals',
+    description: "4-year fully residential undergraduate program in Computer Science delivered by top tech leaders.",
+    duration: '4 Years',
+    audience: 'After 12th',
     theme: 'red'
   },
   {
-    id: 'data-science',
-    title: 'Data Science & Machine Learning',
-    tags: ['Data Science', 'AI', 'ML'],
-    icon: <Database size={40} color="#3b82f6" />,
-    description: 'Learn Data Science from scratch. Master Python, SQL, Machine Learning, and Deep Learning with real-world projects.',
-    duration: '11-15 Months',
-    audience: 'For working professionals',
+    id: 'business',
+    title: 'Scaler School of Business',
+    tags: ['PG Program', 'Business & Tech'],
+    icon: <Briefcase size={40} color="#3b82f6" />,
+    description: 'Postgraduate program to create tech-fluent business leaders. Learn strategy, analytics & entrepreneurship.',
+    duration: '18 Months',
+    audience: 'Graduates & Professionals',
     theme: 'blue'
+  },
+  {
+    id: 'ai-business',
+    title: 'AI + Business',
+    tags: ['Specialization', 'AI'],
+    icon: <Brain size={40} color="#8b5cf6" />,
+    description: 'Master the intersection of AI and business. Build LLM apps and drive AI strategy for enterprises.',
+    duration: '12 Months',
+    audience: 'Working Professionals',
+    theme: 'purple'
   }
 ];
 
 const ProgramsSection = () => {
   return (
-    <section className="programs-section" id="academy">
+    <section className="programs-section" id="programs">
       <div className="container">
         <div className="programs-header">
           <h2 className="section-title">Programs Designed For <span className="gradient-text">Impact</span></h2>

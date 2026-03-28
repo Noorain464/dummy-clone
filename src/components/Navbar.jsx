@@ -27,9 +27,7 @@ const Navbar = () => {
         </Link>
         
         <nav className="nav-links">
-          <Link to="/" className="nav-link">Academy</Link>
-          <Link to="/" className="nav-link">Data Science</Link>
-          <Link to="/masterclass" className="nav-link">Masterclass</Link>
+          <a href="/#programs" className="nav-link">Explore Programs</a>
           <Link to="/alumni" className="nav-link">Alumni</Link>
         </nav>
         

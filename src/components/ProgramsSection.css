@@ -25,7 +25,7 @@
 
 .programs-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
@@ -46,6 +46,11 @@
 .program-card[data-theme="blue"] {
   --theme-accent: #3b82f6;
   --theme-bg: rgba(59, 130, 246, 0.05);
+}
+
+.program-card[data-theme="purple"] {
+  --theme-accent: #8b5cf6;
+  --theme-bg: rgba(139, 92, 246, 0.05);
 }
 
 .program-card::after {
