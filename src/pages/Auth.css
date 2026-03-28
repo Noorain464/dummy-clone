@@ -1,0 +1,125 @@
+.auth-page {
+  padding-top: calc(var(--nav-height) + 60px);
+  padding-bottom: 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 48px 40px;
+  background: rgba(15, 15, 20, 0.7);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.auth-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--accent-base);
+  box-shadow: 0 0 15px rgba(249, 50, 44, 0.15);
+}
+
+.auth-submit {
+  margin-top: 12px;
+  width: 100%;
+  padding: 18px;
+  font-size: 1.1rem;
+}
+
+.auth-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 24px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.auth-toggle span {
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.auth-toggle span:hover {
+  text-decoration: underline;
+  color: #60a5fa;
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 32px 24px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
