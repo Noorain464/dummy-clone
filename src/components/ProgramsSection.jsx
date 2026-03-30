@@ -34,12 +34,12 @@ const programs = [
   }
 ];
 
-const ProgramsSection = () => {
+const ProgramsSection = ({ slots }) => {
   return (
     <section className="programs-section" id="programs">
       <div className="container">
         <div className="programs-header">
-          <h2 className="section-title">Programs Designed For <span className="gradient-text">Impact</span></h2>
+          <h2 className="section-title">{slots?.['Programs Section Headline'] ?? <>Programs Designed For <span className="gradient-text">Impact</span></>}</h2>
           <p className="section-desc">Extensive curriculums covering from fundamentals to advanced concepts, guided by top 1% industry experts.</p>
         </div>
         

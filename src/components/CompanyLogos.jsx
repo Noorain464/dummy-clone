@@ -11,11 +11,11 @@ const companies = [
   { name: 'Airbnb', color: '#ff5a5f' }
 ];
 
-const CompanyLogos = () => {
+const CompanyLogos = ({ slots }) => {
   return (
     <section className="company-logos-section">
       <div className="container" style={{ textAlign: 'center' }}>
-        <h3 className="section-subtitle">Our Alumni Work At Top Tech Companies</h3>
+        <h3 className="section-subtitle">{slots?.['Social Proof Subheadline'] ?? 'Our Alumni Work At Top Tech Companies'}</h3>
         
         <div className="marquee-container">
           <div className="marquee-content">

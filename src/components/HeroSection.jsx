@@ -1,7 +1,7 @@
 import { ArrowRight, Star, CheckCircle } from 'lucide-react';
 import './HeroSection.css';
 
-const HeroSection = () => {
+const HeroSection = ({ slots }) => {
   return (
     <section className="hero-section">
       <div className="hero-gradient-orb top-left"></div>
@@ -15,20 +15,19 @@ const HeroSection = () => {
           </div>
           
           <h1 className="hero-title">
-            Become the <span className="gradient-text">Top 1%</span> in Tech
+            {slots?.['Hero Headline'] ?? <>Become the <span className="gradient-text">Top 1%</span> in Tech</>}
           </h1>
           
           <p className="hero-subtitle">
-            A structured, flexible, and outcome-focused alternative to self-learning.
-            Master Software Development and Data Science with 1:1 mentorship from industry veterans.
+            {slots?.['Hero Supporting Copy'] ?? 'A structured, flexible, and outcome-focused alternative to self-learning. Master Software Development and Data Science with 1:1 mentorship from industry veterans.'}
           </p>
           
           <div className="hero-cta-group">
             <button className="btn btn-primary hero-btn-main">
-              Explore Programs <ArrowRight className="btn-icon" size={20} />
+              {slots?.['Primary Hero CTA'] ?? 'Explore Programs'} <ArrowRight className="btn-icon" size={20} />
             </button>
             <button className="btn btn-secondary hero-btn-outline">
-              Take Free Masterclass
+              {slots?.['Secondary Hero CTA'] ?? 'Take Free Masterclass'}
             </button>
           </div>
           
