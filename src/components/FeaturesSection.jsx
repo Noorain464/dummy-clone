@@ -45,8 +45,8 @@ const FeaturesSection = ({ slots }) => {
     <section className="features-section">
       <div className="container">
         <div className="features-header">
-          <h2 className="section-title">{slots?.['Outcomes / Benefits Headline'] ?? <>Why Choose <span className="gradient-text">Scaler</span></>}</h2>
-          <p className="section-desc">{slots?.['Outcomes Supporting Copy'] ?? "We don't just teach, we transform careers. Here's how we help you succeed."}</p>
+          <h2 className="section-title">{slots?.['Benefits Section Headline'] ?? <>Why Choose <span className="gradient-text">Scaler</span></>}</h2>
+          <p className="section-desc">{"We don't just teach, we transform careers. Here's how we help you succeed."}</p>
         </div>
         
         <div className="features-grid">

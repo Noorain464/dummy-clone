@@ -19,7 +19,7 @@ const HeroSection = ({ slots }) => {
           </h1>
           
           <p className="hero-subtitle">
-            {slots?.['Hero Supporting Copy'] ?? 'A structured, flexible, and outcome-focused alternative to self-learning. Master Software Development and Data Science with 1:1 mentorship from industry veterans.'}
+            {slots?.['Hero Supporting Paragraph'] ?? 'A structured, flexible, and outcome-focused alternative to self-learning. Master Software Development and Data Science with 1:1 mentorship from industry veterans.'}
           </p>
           
           <div className="hero-cta-group">
