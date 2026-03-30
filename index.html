@@ -5,6 +5,103 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>scaler-clone</title>
+    <!-- MarTech Personalization & Analytics Script -->
+    <script>
+      (function () {
+        var CUSTOMER_ID = '69c95ed5e4aa79c8d8b5cd29';
+        var API_URL     = 'http://localhost:5001';
+        var STORAGE_KEY = 'martech_confirmed_' + CUSTOMER_ID;
+        var confirmed   = localStorage.getItem(STORAGE_KEY);
+
+        if (confirmed) {
+          // ── PERSONALIZATION MODE ──
+          runPersonalization(JSON.parse(confirmed));
+        } else {
+          // ── SCAN MODE ──
+          document.addEventListener('DOMContentLoaded', runScan);
+        }
+
+        function runScan() {
+          var defs = [
+            { sel: 'h1',                                    type: 'headline' },
+            { sel: 'h2',                                    type: 'subheadline' },
+            { sel: 'h3',                                    type: 'subheadline' },
+            { sel: 'header p, section p, .hero p, main p',  type: 'paragraph' },
+            { sel: 'button, a.btn, a.cta, [class*="cta"], [class*="btn"]', type: 'cta' },
+          ];
+          var elements = [], counters = {};
+          defs.forEach(function (d) {
+            document.querySelectorAll(d.sel).forEach(function (el) {
+              if (elements.length >= 20) return;
+              var text = (el.textContent || '').trim().slice(0, 120);
+              if (text.length < 3) return;
+              var base = 'mt_' + el.tagName.toLowerCase() + '_';
+              counters[base] = (counters[base] || 0) + 1;
+              var id = base + (counters[base] - 1);
+              el.setAttribute('data-martech-id', id);
+              elements.push({ martech_id: id, tag: el.tagName, type: d.type, text_preview: text });
+            });
+          });
+          fetch(API_URL + '/api/analyze/scan', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customer_id: CUSTOMER_ID,
+              page_url:    window.location.href,
+              page_title:  document.title,
+              elements:    elements
+            })
+          }).catch(function () {});
+          showToast(elements.length);
+        }
+
+        function showToast(count) {
+          var el = document.createElement('div');
+          el.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:999999;background:#1e293b;color:#f8fafc;padding:12px 18px;border-radius:10px;font-size:13px;font-family:system-ui,sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.3);border-left:3px solid #7c3aed;cursor:default';
+          el.textContent = 'MarTech: ' + count + ' elements found — review in dashboard →';
+          document.body.appendChild(el);
+          setTimeout(function () { el.remove(); }, 7000);
+        }
+
+        function runPersonalization(slots) {
+          var ids = slots.map(function (s) { return s.martech_id; });
+          var style = document.createElement('style');
+          style.textContent = ids.map(function (id) {
+            return '[data-martech-id="' + id + '"]{opacity:0;transition:opacity 0.25s ease}';
+          }).join('');
+          document.head.appendChild(style);
+          var reveal = function () {
+            ids.forEach(function (id) {
+              var el = document.querySelector('[data-martech-id="' + id + '"]');
+              if (el) el.style.opacity = '1';
+            });
+          };
+          var p = new URLSearchParams(window.location.search);
+          fetch(API_URL + '/api/variants/resolve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customer_id:  CUSTOMER_ID,
+              utm_campaign: p.get('utm_campaign'),
+              utm_source:   p.get('utm_source'),
+              utm_medium:   p.get('utm_medium'),
+              referrer:     document.referrer
+            })
+          })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data.slots) {
+              slots.forEach(function (s) {
+                var el = document.querySelector('[data-martech-id="' + s.martech_id + '"]');
+                if (el && data.slots[s.label]) el.textContent = data.slots[s.label];
+              });
+            }
+            reveal();
+          })
+          .catch(reveal);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
